@@ -1,0 +1,38 @@
+import useFetch from "../hooks/useFetch"
+import "./styles/residentCard.css"
+
+
+
+const ResidentCards = ({url}) => {
+  
+  const [resident] = useFetch(url)  
+  return (
+    <article className="resident">
+      <header className="resident__header">
+        <img className="resident__avatar" src={resident?.image} alt="" />
+        <div className="resident__status">
+          <div className={`resident__circle ${resident?.status}`}></div>
+          <span className="resident_status_label">{resident?.status}</span>
+        </div>
+      </header>
+      <section className="resident__body">
+        <h3 className="resident__name">{resident?.name}</h3>
+        <hr className="resident__hr"/>
+        <ul>
+          <li className="resident__item">
+            <span className="resident__label">Specie:</span>
+            <span className="resident__value"> {resident?.species}</span></li>
+          <li className="resident__item">
+            <span className="resident__label">Origin:</span>
+            <span className="resident__value"> {resident?.origin.name}</span></li>
+          <li className="resident__item">
+            <span className="resident__label">Episodes where appear:</span>
+            <span className="resident__value"> {resident?.episode.length}</span></li>
+        </ul>
+      </section>
+    </article>
+    
+  )
+}
+
+export default ResidentCards
